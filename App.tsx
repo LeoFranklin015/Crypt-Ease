@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   TouchableOpacity,
   SafeAreaView,
@@ -11,12 +11,8 @@ import {
   Alert,
 } from 'react-native';
 
-// import QRCodeScanner from 'react-native-qrcode-scanner';
-// import {RNCamera} from 'react-native-camera';
-import QRscanner from './Components/QRscanner';
-
 import Navbar from './Components/Navbar';
-
+import SendModal from './Components/SendModal';
 import {
   RlyMumbaiNetwork,
   createAccount,
@@ -38,6 +34,29 @@ const App: React.FC = () => {
   const username: string = '6321xxxx9055';
   const appName: string = 'CryptEase';
 
+  const [isSendModalVisible, setSendModalVisible] = useState(false);
+
+  const openSendModal = () => {
+    setSendModalVisible(true);
+    console.log('send');
+  };
+
+  const closeSendModal = () => {
+    setSendModalVisible(false);
+  };
+
+  const handleSendViaQR = () => {
+    // Implement logic for sending via QR code
+    // ...
+    closeSendModal();
+  };
+
+  const handleSendViaWalletAddress = () => {
+    // Implement logic for sending via wallet address
+    // ...
+    closeSendModal();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -45,7 +64,7 @@ const App: React.FC = () => {
         {/* <Text style={{color: 'white'}}>HEllo</Text> */}
         <Balance />
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={openSendModal}>
             <Text style={styles.buttonText}>Send</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
@@ -54,6 +73,12 @@ const App: React.FC = () => {
         </View>
         <View style={styles.spaceBetweenComponents} />
         <TabNavigation />
+        <SendModal
+          isVisible={isSendModalVisible}
+          onSendViaQR={handleSendViaQR}
+          onSendViaWalletAddress={handleSendViaWalletAddress}
+          onClose={closeSendModal}
+        />
       </ScrollView>
     </SafeAreaView>
   );
