@@ -8,6 +8,7 @@ import {
   getAccount,
   createAccount,
 } from '@rly-network/mobile-sdk';
+import Auth from './Auth';
 
 const rlyNetwork = RlyMumbaiNetwork;
 rlyNetwork.setApiKey(
@@ -37,9 +38,11 @@ const Splash = () => {
         // If the account doesn't exist, show the modal
         handleCreateAccount();
       } else {
-        // If the account exists, navigate to the home screen after a delay (simulating a splash screen)
-        setTimeout(() => {
-          navigation.navigate('Home'); // Replace 'Home' with your actual home screen route name
+        setTimeout(async () => {
+          const val = await Auth();
+          if (val == 1) {
+            navigation.navigate('Home');
+          }
         }, 4000); // Change the delay as needed
       }
     };
