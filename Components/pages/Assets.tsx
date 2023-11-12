@@ -28,6 +28,7 @@ const Assets: React.FC<Props> = ({navigation}) => {
               fontSize: 25,
               textAlign: 'center',
               marginBottom: 16,
+              color: 'white',
             }}>
             Setting{'\n'}(You are on SecondPage)
           </Text>

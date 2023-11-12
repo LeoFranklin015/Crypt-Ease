@@ -8,6 +8,7 @@ import {
   Alert,
   StyleSheet,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import ViewShot from 'react-native-view-shot';
 import RNFS from 'react-native-fs';
 import QRCode from 'react-native-qrcode-svg';
@@ -20,6 +21,8 @@ rlyNetwork.setApiKey(
 );
 
 const GenerateQR: React.FC = () => {
+  const navigation = useNavigation();
+
   const getacc = async () => {
     try {
       const account = await getAccount();
@@ -74,6 +77,10 @@ const GenerateQR: React.FC = () => {
     }
   };
 
+  const handleCancel = () => {
+    navigation.navigate('Home');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
@@ -85,6 +92,9 @@ const GenerateQR: React.FC = () => {
       </ViewShot>
       <TouchableOpacity style={styles.button} onPress={handleDownloadQRCode}>
         <Text style={styles.buttonText}>Download QR Code</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
+        <Text style={styles.buttonText}>Cancel</Text>
       </TouchableOpacity>
     </View>
   );
@@ -119,6 +129,13 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontSize: 16,
+  },
+  cancelButton: {
+    marginTop: 10,
+    backgroundColor: '#ff4500', // Dark red button color
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
   },
 });
 

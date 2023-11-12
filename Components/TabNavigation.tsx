@@ -35,7 +35,7 @@ function ScreenTwo() {
 
 export default function TabNavigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {backgroundColor: '#6A5ACD'},
