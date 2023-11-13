@@ -6,7 +6,13 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
+
+import {RlyMumbaiNetwork, MetaTxMethod} from '@rly-network/mobile-sdk';
+import Auth from './pages/Auth';
+import {useNavigation} from '@react-navigation/native';
 
 interface PaymentModalProps {
   isVisible: boolean;
@@ -15,6 +21,8 @@ interface PaymentModalProps {
   address: String;
 }
 
+const customTokenAddress: string | undefined = undefined;
+
 const PaymentModal: React.FC<PaymentModalProps> = ({
   isVisible,
   onClose,
@@ -22,13 +30,36 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
   address,
 }) => {
   const [amount, setAmount] = useState('');
+  const [currency, setCurrency] = useState('ETH');
+  const [loading, setLoading] = useState(false);
 
-  const handleSend = () => {
-    const amountValue = parseFloat(amount);
+  const navigation = useNavigation();
 
-    if (!isNaN(amountValue)) {
-      onSend(amountValue);
-      onClose();
+  const transfer = async () => {
+    try {
+      setLoading(true);
+      const val = await Auth();
+      if (val == 1) {
+        const amountValue = parseFloat(amount);
+        if (!isNaN(amountValue)) {
+          await RlyMumbaiNetwork.transfer(
+            String(address),
+            parseInt(amount, 10),
+            '0x1C7312Cb60b40cF586e796FEdD60Cf243286c9E9',
+            MetaTxMethod.ExecuteMetaTransaction,
+          );
+          Alert.alert('Transfer Successful !');
+          onClose();
+          navigation.navigate('Home');
+        } else {
+          Alert.alert('Amount cant be empty');
+        }
+      }
+    } catch (error) {
+      Alert.alert('An error occurred.');
+      console.log(error);
+    } finally {
+      setLoading(false); // Stop loading, whether successful or not
     }
   };
 
@@ -41,12 +72,24 @@ const PaymentModal: React.FC<PaymentModalProps> = ({
             style={styles.input}
             placeholder="Enter amount"
             keyboardType="numeric"
-            placeholderTextColor="#bbb" // Light gray placeholder text
+            placeholderTextColor="#bbb"
             value={amount}
             onChangeText={text => setAmount(text)}
+            editable={!loading} // Disable input field while loading
           />
-          <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-            <Text style={styles.buttonText}>Send</Text>
+
+          <TouchableOpacity
+            style={styles.sendButton}
+            onPress={transfer}
+            disabled={loading} // Disable the button while loading
+          >
+            {loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>
+                {loading ? 'PleaseWait' : 'Send'}
+              </Text>
+            )}
           </TouchableOpacity>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <Text style={styles.buttonText}>Close</Text>
@@ -102,6 +145,31 @@ const styles = StyleSheet.create({
     color: '#fff', // White text color
     textAlign: 'center',
     fontSize: 16,
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'white',
+    paddingRight: 30,
+    backgroundColor: '#333', // Dark background color
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'purple',
+    borderRadius: 8,
+    color: 'white',
+    paddingRight: 30,
+    backgroundColor: '#333', // Dark background color
   },
 });
 

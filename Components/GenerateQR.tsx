@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    backgroundColor: '#1e90ff', // Dark blue button color
+    backgroundColor: '#6A5ACD', // Dark blue button color
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,

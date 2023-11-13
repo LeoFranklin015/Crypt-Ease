@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   TouchableOpacity,
   SafeAreaView,
@@ -19,6 +19,7 @@ import {
   createAccount,
   getAccount,
 } from '@rly-network/mobile-sdk';
+
 import Balance from '../Balance';
 import TabNavigation from '../TabNavigation';
 import WalletSend from '../WalletSend';
@@ -39,6 +40,8 @@ const Home: React.FC = () => {
 
   const [isSendModalVisible, setSendModalVisible] = useState(false);
   const [isWalletModalVisible, setWalletModalVisible] = useState(false);
+  const [balance, setBalance] = useState(0);
+  const [account, setAccount] = useState('0X');
 
   const openSendModal = () => {
     setSendModalVisible(true);
@@ -67,12 +70,29 @@ const Home: React.FC = () => {
     navigation.navigate('Recieve');
   };
 
+  const get = async () => {
+    try {
+      const account = await getAccount();
+      if (account !== undefined) {
+        setAccount(account);
+      }
+      const erc20TokenAddress = '0x76b8D57e5ac6afAc5D415a054453d1DD2c3C0094';
+      const balance = await RlyMumbaiNetwork.getBalance();
+      setBalance(balance);
+    } catch (error) {
+      console.error('Error getting:', error);
+    }
+  };
+
+  useEffect(() => {
+    get();
+  });
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <Navbar profilePic={profilePic} username={username} appName={appName} />
+        <Navbar profilePic={profilePic} username={account} appName={appName} />
         {/* <Text style={{color: 'white'}}>HEllo</Text> */}
-        <Balance />
+        <Balance balance={balance} />
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={openSendModal}>
             <Text style={styles.buttonText}>Send</Text>
@@ -165,15 +185,7 @@ export default Home;
     }
   };
 
-  const get = async () => {
-    try {
-      const account = await getAccount();
-      console.log('ACCOUNT:', account);
-    } catch (error) {
-      console.error('Error getting:', error);
-    }
-  };
-
+ 
 
 
 

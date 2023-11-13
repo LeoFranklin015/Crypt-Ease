@@ -7,7 +7,12 @@ import {
   Button,
   TouchableOpacity,
   StyleSheet,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
+import {RlyMumbaiNetwork, MetaTxMethod} from '@rly-network/mobile-sdk';
+import Auth from './pages/Auth';
+import {useNavigation} from '@react-navigation/native';
 
 interface WalletSendProps {
   isVisible: boolean;
@@ -17,12 +22,35 @@ interface WalletSendProps {
 const WalletSend: React.FC<WalletSendProps> = ({isVisible, onClose}) => {
   const [address, setAddress] = useState('');
   const [amount, setAmount] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSend = () => {
-    // Add validation or other logic before sending
-    // Call the onSend callback with the address and amount
-
-    // Close the modal
+  const navigation = useNavigation();
+  const handleSend = async () => {
+    try {
+      setLoading(true);
+      const val = await Auth();
+      if (val == 1) {
+        const amountValue = parseFloat(amount);
+        if (!isNaN(amountValue)) {
+          await RlyMumbaiNetwork.transfer(
+            String(address),
+            parseInt(amount, 10),
+            '0x1C7312Cb60b40cF586e796FEdD60Cf243286c9E9',
+            MetaTxMethod.ExecuteMetaTransaction,
+          );
+          Alert.alert('Transfer Successful !');
+          onClose();
+          navigation.navigate('Home');
+        } else {
+          Alert.alert('Amount cant be empty');
+        }
+      }
+    } catch (error) {
+      Alert.alert('An error occurred.');
+      console.log(error);
+    } finally {
+      setLoading(false); // Stop loading, whether successful or not
+    }
     onClose();
   };
 
@@ -50,8 +78,18 @@ const WalletSend: React.FC<WalletSendProps> = ({isVisible, onClose}) => {
             keyboardType="numeric"
             placeholderTextColor="white" // Set text color to white
           />
-          <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-            <Text style={styles.buttonText}>Send</Text>
+          <TouchableOpacity
+            style={styles.sendButton}
+            onPress={handleSend}
+            disabled={loading} // Disable the button while loading
+          >
+            {loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>
+                {loading ? 'PleaseWait' : 'Send'}
+              </Text>
+            )}
           </TouchableOpacity>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <Text style={styles.buttonText}>Close</Text>

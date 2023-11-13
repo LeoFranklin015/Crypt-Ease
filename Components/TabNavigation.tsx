@@ -2,6 +2,8 @@ import * as React from 'react';
 import {View, Text} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {NavigationContainer} from '@react-navigation/native';
+import Assets from './pages/Assets';
+import Transaction from './pages/Transaction';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -42,8 +44,8 @@ export default function TabNavigation() {
           tabBarLabelStyle: {color: 'white'},
           tabBarIndicatorStyle: {},
         }}>
-        <Tab.Screen name="Assets" component={ScreenOne} />
-        <Tab.Screen name="Transaction" component={ScreenTwo} />
+        <Tab.Screen name="Assets" component={Assets} />
+        <Tab.Screen name="Transaction" component={Transaction} />
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -7,53 +7,15 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import {NavigationHelpers, ParamListBase} from '@react-navigation/native';
+import AssetCard from '../AssetCard';
 
-type Props = {
-  navigation: NavigationHelpers<ParamListBase>;
-};
-
-const Assets: React.FC<Props> = ({navigation}) => {
+const Assets: React.FC = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, padding: 16}}>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16,
-              color: 'white',
-            }}>
-            Setting{'\n'}(You are on SecondPage)
-          </Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('FirstPage')}>
-            <Text>Go to Home Tab</Text>
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={{
-            fontSize: 18,
-            textAlign: 'center',
-            color: 'grey',
-          }}>
-          React Native Tab Navigation
-        </Text>
-        <Text
-          style={{
-            fontSize: 16,
-            textAlign: 'center',
-            color: 'grey',
-          }}>
-          www.aboutreact.com
-        </Text>
+      <View style={{flex: 1, padding: 10, backgroundColor: '#B8A6FF', gap: 10}}>
+        <AssetCard />
+        <AssetCard />
+        <AssetCard />
       </View>
     </SafeAreaView>
   );
@@ -62,7 +24,7 @@ const Assets: React.FC<Props> = ({navigation}) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#B8A6FF',
     padding: 10,
     width: 300,
     marginTop: 16,

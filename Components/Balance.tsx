@@ -1,19 +1,25 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import Dropdown from './Dropdown';
+
+import {RlyMumbaiNetwork, getAccount} from '@rly-network/mobile-sdk';
+
 interface LocalData {
   value: string;
   label: string;
 }
 
+interface balance {
+  balance: any;
+}
 const local_data: LocalData[] = [
   {value: '1', label: 'ETH'},
   {value: '2', label: 'RLY'},
   {value: '3', label: 'MATIC'},
 ];
 
-const Balance: React.FC = () => {
-  const [balance, setBalance] = useState(1000);
+const Balance: React.FC<balance> = ({balance}) => {
+  // const [balance, setBalance] = useState(1000);
   const [country, setCountry] = useState('ETH');
   const [open, setOpen] = useState(false);
 
@@ -53,7 +59,9 @@ const Balance: React.FC = () => {
           )}
         </View>
       </View>
-      <Text style={styles.largeBalance}>{balance}</Text>
+      <Text style={styles.largeBalance}>
+        {balance} {country}
+      </Text>
       <Text style={styles.smallBalance}>{balance} in usd</Text>
     </View>
   );

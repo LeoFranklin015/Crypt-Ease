@@ -9,53 +9,32 @@ import {
 } from 'react-native';
 
 import {NavigationHelpers, ParamListBase} from '@react-navigation/native';
+import TransactionCard from '../TransactionCard';
 
-type Props = {
-  navigation: NavigationHelpers<ParamListBase>;
-};
-
-const Transaction: React.FC<Props> = ({navigation}) => {
-  const handleNavigation = (): void => {
-    navigation.navigate('SecondPage');
-  };
-
+const Transaction: React.FC = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, padding: 16}}>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16,
-            }}>
-            Home{'\n'}(You are on FirstPage)
-          </Text>
-          <TouchableOpacity style={styles.button} onPress={handleNavigation}>
-            <Text>Go to setting Tab</Text>
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={{
-            fontSize: 18,
-            textAlign: 'center',
-            color: 'grey',
-          }}>
-          React Native Tab Navigation
-        </Text>
-        <Text
-          style={{
-            fontSize: 16,
-            textAlign: 'center',
-            color: 'grey',
-          }}>
-          www.aboutreact.com
-        </Text>
+      <View style={{flex: 1, padding: 10, backgroundColor: '#B8A6FF'}}>
+        <TransactionCard
+          accountNumber="536363643662624babwby55"
+          amount="2 eth"
+          isSent={true}
+        />
+        <TransactionCard
+          accountNumber="fwqfXXXX532y"
+          amount="3 rly"
+          isSent={false}
+        />
+        <TransactionCard
+          accountNumber="536363643662624babwby55"
+          amount="24 eth"
+          isSent={true}
+        />
+        <TransactionCard
+          accountNumber="fwqfXXXX532y"
+          amount="2 eth"
+          isSent={true}
+        />
       </View>
     </SafeAreaView>
   );

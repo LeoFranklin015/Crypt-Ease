@@ -53,10 +53,12 @@ const Splash = () => {
   const handleCreateAccount = async () => {
     try {
       const newAccount = await createAccount();
+      await RlyMumbaiNetwork.claimRly();
       Alert.alert(
         'Welcome User!',
         String('We have a created a crypto account for you...'),
       );
+      navigation.navigate('Home');
     } catch (error) {
       console.error('Error Creating:', error);
       Alert.alert('Error', String(error));
