@@ -14,7 +14,7 @@ import TransactionCard from '../TransactionCard';
 const Transaction: React.FC = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, padding: 10, backgroundColor: '#B8A6FF'}}>
+      <View style={{flex: 1, padding: 10, backgroundColor: '#FFFFFF', gap: 10}}>
         <TransactionCard
           accountNumber="536363643662624babwby55"
           amount="2 eth"

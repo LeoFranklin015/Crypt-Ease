@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black', // Dark background color
+    backgroundColor: '#B8A6FF', // Dark background color
     color: 'white', // Text color
     margin: 10,
     // marginTop: -30,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   balanceText: {
     fontWeight: 'bold',
     fontSize: 25,
-    color: 'white', // Text color
+    color: 'black', // Text color
     marginRight: 33,
   },
 
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 15, // Adjust the font size
     // fontWeight: 'light', // Add bold font weight
-    color: 'white', // Text color
+    color: 'black', // Text color
   },
   dropdown: {
     margin: 16,

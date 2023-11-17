@@ -28,7 +28,7 @@ function ScreenTwo() {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#B8A6FF',
+        backgroundColor: '#ffffff',
       }}>
       <Text>Second Screen</Text>
     </View>
@@ -40,8 +40,8 @@ export default function TabNavigation() {
     <NavigationContainer independent={true}>
       <Tab.Navigator
         screenOptions={{
-          tabBarStyle: {backgroundColor: '#6A5ACD'},
-          tabBarLabelStyle: {color: 'white'},
+          tabBarStyle: {backgroundColor: '#ffffff'},
+          tabBarLabelStyle: {color: '#000000'},
           tabBarIndicatorStyle: {},
         }}>
         <Tab.Screen name="Assets" component={Assets} />

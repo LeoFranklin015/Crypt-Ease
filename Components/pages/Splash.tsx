@@ -40,9 +40,9 @@ const Splash = () => {
       } else {
         setTimeout(async () => {
           const val = await Auth();
-          if (val == 1) {
-            navigation.navigate('Home');
-          }
+          // if (val == 1) {
+          navigation.navigate('Home');
+          // }
         }, 4000); // Change the delay as needed
       }
     };

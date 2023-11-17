@@ -19,15 +19,15 @@ const Navbar: React.FC<CustomHeaderProps> = ({
       alignItems: 'center',
       paddingHorizontal: 15,
       paddingVertical: 10,
-      backgroundColor: 'black', // Change the background color as needed
+      backgroundColor: '#D8D8FA', // Change the background color as needed
     }}>
-    <Text style={{fontWeight: 'bold', color: 'white'}}>{appName}</Text>
+    <Text style={{fontWeight: 'bold', color: 'black'}}>{appName}</Text>
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
       <Image
         source={profilePic} // Replace with actual profile picture URL
         style={{width: 40, height: 40, borderRadius: 50}}
       />
-      <Text style={{marginLeft: 10, fontWeight: 'bold', color: 'white'}}>
+      <Text style={{marginLeft: 10, fontWeight: 'bold', color: 'black'}}>
         {username}
       </Text>
     </View>

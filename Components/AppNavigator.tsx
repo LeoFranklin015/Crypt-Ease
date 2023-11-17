@@ -6,6 +6,7 @@ import QrScreen from './QRscanner'; // Your Qr.tsx file
 import GenerateQR from './GenerateQR';
 import Splash from './pages/Splash';
 import Auth from './pages/Auth';
+import Group from './pages/Group';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,7 @@ const AppNavigator = () => {
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Splash"
-        component={Splash}
+        component={Group}
         options={{headerShown: false}}
       />
       <Stack.Screen

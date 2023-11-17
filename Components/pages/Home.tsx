@@ -120,7 +120,7 @@ const Home: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
+    backgroundColor: '#D8D8FA',
     flex: 1,
   },
   scrollViewContent: {

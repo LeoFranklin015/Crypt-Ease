@@ -15,7 +15,8 @@ const TransactionCard: FC<TransactionCardProps> = ({
   const Color = isSent ? '#FF6961' : '#4CAF50'; // Red for sent, Green for received
 
   return (
-    <View style={[styles.card, {backgroundColor: '#D8D8FA'}]}>
+    // <View style={[styles.card, {backgroundColor: '#D8D8FA'}]}>
+    <View style={styles.card}>
       <Text style={styles.accountNumber}>{accountNumber}</Text>
       <Text style={[styles.amount, {color: Color}]}>{amount}</Text>
     </View>
@@ -29,8 +30,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%', // Occupy the full width
     padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
+    // borderWidth: 1,
+    // borderColor: '#ccc',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(147, 149, 164, 0.2)',
+
     borderRadius: 8,
     marginBottom: 10,
   },

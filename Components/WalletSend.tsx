@@ -68,7 +68,7 @@ const WalletSend: React.FC<WalletSendProps> = ({isVisible, onClose}) => {
             placeholder="Enter Address"
             value={address}
             onChangeText={setAddress}
-            placeholderTextColor="white" // Set text color to white
+            placeholderTextColor="black"
           />
           <TextInput
             style={styles.input}
@@ -76,7 +76,7 @@ const WalletSend: React.FC<WalletSendProps> = ({isVisible, onClose}) => {
             value={amount}
             onChangeText={setAmount}
             keyboardType="numeric"
-            placeholderTextColor="white" // Set text color to white
+            placeholderTextColor="black"
           />
           <TouchableOpacity
             style={styles.sendButton}
@@ -108,28 +108,31 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)', // Dark overlay
   },
   modalContent: {
-    backgroundColor: '#333', // Dark background color
+    backgroundColor: '#F3F5F6', // Dark background color
     borderRadius: 15,
     padding: 20,
     width: '80%',
     alignItems: 'center',
   },
   title: {
-    color: '#fff', // White text color
+    color: 'black', // White text color
     fontSize: 22,
     marginBottom: 15,
   },
   input: {
-    height: 40,
-    borderColor: '#555', // Dark border color
     borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 16,
     marginBottom: 20,
-    paddingHorizontal: 10,
+    backgroundColor: '#f4f4f4', // Light gray background color
+    color: 'black', // Text color
     width: '100%',
-    color: '#fff', // White text color
   },
   sendButton: {
-    backgroundColor: 'darkgreen', // Dark blue button color
+    backgroundColor: '#4CAF50', // Dark blue button color
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,

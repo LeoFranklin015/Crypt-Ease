@@ -12,10 +12,13 @@ import AssetCard from '../AssetCard';
 const Assets: React.FC = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, padding: 10, backgroundColor: '#B8A6FF', gap: 10}}>
+      <View style={{flex: 1, padding: 10, backgroundColor: '#FFFFFF', gap: 10}}>
         <AssetCard />
+        <View style={styles.line} />
         <AssetCard />
+        <View style={styles.line} />
         <AssetCard />
+        <View style={styles.line} />
       </View>
     </SafeAreaView>
   );
@@ -28,6 +31,14 @@ const styles = StyleSheet.create({
     padding: 10,
     width: 300,
     marginTop: 16,
+  },
+  line: {
+    borderStyle: 'solid',
+    borderColor: 'rgba(147, 149, 164, 0.1)',
+    borderTopWidth: 1,
+    // flex: 1,
+    width: '100%',
+    // height: 1,
   },
 });
 

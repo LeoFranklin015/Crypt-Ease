@@ -12,7 +12,7 @@ const AssetCard = () => {
         <Text style={styles.name}>Currency Name</Text>
       </View>
       <Text style={styles.balance}>25 eth</Text>
-      {/* Replace with your actual balance */}
+      {/* <View style={styles.line} /> */}
     </View>
   );
 };
@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%', // Occupy the full width
     padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
+    // borderWidth: 1,
+    // borderColor: '#ccc',
     borderRadius: 8,
-    backgroundColor: '#D8D8FA',
+    // backgroundColor: '#D8D8FA',
   },
   logo: {
     width: 50, // Adjust the logo width
@@ -47,6 +47,12 @@ const styles = StyleSheet.create({
   },
   balance: {
     fontSize: 14,
+  },
+  line: {
+    borderBottomWidth: 1, // Width of the horizontal line
+    borderBottomColor: '#ccc', // Color of the horizontal line
+    width: '100%', // Occupy the full width
+    marginTop: 10, // Adjust the spacing between the card and the line
   },
 });
 

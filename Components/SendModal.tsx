@@ -51,17 +51,18 @@ const styles = StyleSheet.create({
     width: '80%',
     padding: 16,
     borderRadius: 8,
-    backgroundColor: 'black', // Background color changed to black
+    backgroundColor: '#F3F5F6', // Background color changed to black
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: 'white', // Text color changed to white
+    color: 'black', // Text color changed to white
+    alignSelf: 'center',
   },
   optionButton: {
     padding: 12,
-    backgroundColor: '#6A5ACD',
+    backgroundColor: 'black',
     borderRadius: 8,
     marginBottom: 12,
     alignItems: 'center',
