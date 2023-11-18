@@ -83,19 +83,21 @@ const GenerateQR: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+      <Text style={{color: 'black', fontSize: 20, fontWeight: 'bold'}}>
         Scan this to send{' '}
       </Text>
       <ViewShot style={styles.card} options={{format: 'png', quality: 1.0}}>
         <QRCode value={QRcode} size={250} />
         <Text style={styles.qrText}>{QRcode}</Text>
       </ViewShot>
-      <TouchableOpacity style={styles.button} onPress={handleDownloadQRCode}>
-        <Text style={styles.buttonText}>Download QR Code</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
-        <Text style={styles.buttonText}>Cancel</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleDownloadQRCode}>
+          <Text style={styles.buttonText}>Download</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
+          <Text style={styles.buttonText}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -105,37 +107,48 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#E6E9EB',
     gap: 30,
   },
   card: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#CED4D7',
     padding: 20,
     borderRadius: 10,
     alignItems: 'center',
+    gap: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+    gap: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
   },
   qrText: {
     marginTop: 10,
     color: 'black', // Change the color based on your preference
   },
-  button: {
-    marginTop: 20,
-    backgroundColor: '#6A5ACD', // Dark blue button color
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-  },
+
   buttonText: {
     color: 'white',
     textAlign: 'center',
     fontSize: 16,
   },
-  cancelButton: {
-    marginTop: 10,
-    backgroundColor: '#ff4500', // Dark red button color
+  button: {
+    backgroundColor: '#27ae60', // Dark blue button color
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
+    marginRight: 10,
+    flex: 1, // Equal flex to distribute space evenly
+  },
+  cancelButton: {
+    backgroundColor: '#e74c3c', // Dark red button color
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    flex: 1, // Equal flex to distribute space evenly
   },
 });
 
