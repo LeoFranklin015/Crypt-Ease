@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -10,8 +10,29 @@ import {
 
 import {NavigationHelpers, ParamListBase} from '@react-navigation/native';
 import TransactionCard from '../TransactionCard';
+import supabase from '../../lib/api';
 
 const Transaction: React.FC = () => {
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const {data, error} = await supabase
+          .from('Transaction')
+          .select('*')
+          .limit(10);
+
+        if (error) {
+          console.error('Error fetching transactions:', error);
+        } else {
+          console.log('Fetched data:', data);
+        }
+      } catch (error: any) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+    fetchTransactions();
+  }, []);
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, padding: 10, backgroundColor: '#FFFFFF', gap: 10}}>
