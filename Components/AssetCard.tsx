@@ -1,7 +1,45 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import {
+  RlyMumbaiNetwork,
+  createAccount,
+  getAccount,
+} from '@rly-network/mobile-sdk';
 
-const AssetCard = () => {
+interface AssetCardProps {
+  currency: string;
+}
+const AssetCard: React.FC<AssetCardProps> = ({currency}) => {
+  const [balance, setBalance] = useState(0);
+
+  let tokenAddress = '';
+  let name = '';
+  if (currency == 'RLY') {
+    name = 'Rally';
+    tokenAddress = '0x1C7312Cb60b40cF586e796FEdD60Cf243286c9E9';
+  } else if (currency == 'MATIC') {
+    name = 'Matic';
+    tokenAddress = '0x0000000000000000000000000000000000001010';
+  }
+  const getBalance = async () => {
+    try {
+      const balance = await RlyMumbaiNetwork.getBalance(
+        // '0x1C7312Cb60b40cF586e796FEdD60Cf243286c9E9',
+
+        // '0x0000000000000000000000000000000000001010',
+        tokenAddress,
+      );
+
+      console.log(balance);
+      setBalance(balance);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getBalance();
+  });
   return (
     <View style={styles.card}>
       <View style={styles.info}>
@@ -9,9 +47,11 @@ const AssetCard = () => {
           style={styles.logo}
           source={require('./blockchain.png')} // Replace with your actual logo URL
         />
-        <Text style={styles.name}>Currency Name</Text>
+        <Text style={styles.name}>{name}</Text>
       </View>
-      <Text style={styles.balance}>25 eth</Text>
+      <Text style={styles.balance}>
+        {balance} {currency}
+      </Text>
       {/* <View style={styles.line} /> */}
     </View>
   );

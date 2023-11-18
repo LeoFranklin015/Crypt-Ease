@@ -7,6 +7,7 @@ import GenerateQR from './GenerateQR';
 import Splash from './pages/Splash';
 import Auth from './pages/Auth';
 import Group from './pages/Group';
+import Fetch from './newComp/Fetch';
 
 const Stack = createStackNavigator();
 
@@ -15,12 +16,12 @@ const AppNavigator = () => {
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Splash"
-        component={Group}
+        component={Splash}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="Home"
-        component={Home}
+        component={Group}
         options={{headerShown: false}}
       />
       <Stack.Screen

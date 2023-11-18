@@ -13,11 +13,11 @@ const Assets: React.FC = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, padding: 10, backgroundColor: '#FFFFFF', gap: 10}}>
-        <AssetCard />
+        <AssetCard currency="RLY" />
         <View style={styles.line} />
-        <AssetCard />
+        <AssetCard currency="MATIC" />
         <View style={styles.line} />
-        <AssetCard />
+        <AssetCard currency="RLY" />
         <View style={styles.line} />
       </View>
     </SafeAreaView>
