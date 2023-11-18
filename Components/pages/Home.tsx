@@ -72,10 +72,6 @@ const Home: React.FC = () => {
 
   const get = async () => {
     try {
-      const account = await getAccount();
-      if (account !== undefined) {
-        setAccount(account);
-      }
       const erc20TokenAddress = '0x76b8D57e5ac6afAc5D415a054453d1DD2c3C0094';
       const balance = await RlyMumbaiNetwork.getBalance();
       setBalance(balance);
